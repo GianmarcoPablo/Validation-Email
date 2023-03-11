@@ -57,7 +57,7 @@ function validarFormulario(e){
         btnEnviar.classList.remove("cursor-not-allow","opacity-50")
     }
 }
-console.log("hola")
+
 function mostrarError(mensaje){
     const mensajeError = document.createElement("p")
     mensajeError.textContent = mensaje
