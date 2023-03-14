@@ -92,3 +92,6 @@ function resetearFormulario(e){
     formulario.reset()
     inicarApp()
 }
+
+console.log
+console.log
