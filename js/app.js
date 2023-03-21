@@ -53,7 +53,7 @@ function validarFormulario(e){
         }
     }
 
-    if(er.test(email.value) && mensaje.value !== "" && asunto.value !== ""){
+    if(er.test(email.value) && asunto.value !== "" && mensaje.value !== ""){
         btnEnviar.disabled = false
         btnEnviar.classList.remove("cursor-not-allow","opacity-50")
     }
@@ -74,19 +74,18 @@ function enviarEmail(e){
     e.preventDefault()
     const spinner = document.querySelector("#spinner")
     spinner.style.display = "flex"
+
     setTimeout(() => {
         spinner.style.display = "none"
         const parrafo = document.createElement("p")
-        parrafo.textContent = "Mensaje enviado correctamente"
         parrafo.classList.add("border","border-green-500","bg-green-300","text-black","p-3","text-center","mt-5","error","font-bold","uppercase")
+        parrafo.textContent = "Mensaje Enviado Correctamente"
         formulario.appendChild(parrafo)
-
         setTimeout(() => {
             parrafo.remove()
             resetearFormulario()
         }, 3000);
     }, 3000);
-    
 }
 
 function resetearFormulario(){
