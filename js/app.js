@@ -8,7 +8,7 @@ const btnReset = document.querySelector("#resetBtn")
 
 cargarEventListeners()
 function cargarEventListeners(){
-    document.addEventListener("DOMContentLoaded",iniciarApp)
+    document.addEventListener("DOMContentLoaded",inicarApp)
     email.addEventListener("blur",validarFormulario)
     asunto.addEventListener("blur",validarFormulario)
     mensaje.addEventListener("blur",validarFormulario)
@@ -19,7 +19,7 @@ function cargarEventListeners(){
     })
 }
 
-function iniciarApp(){
+function inicarApp(){
     btnEnviar.disabled = true
     btnEnviar.classList.add("cursor-not-allow","opacity-50")
 }
@@ -53,8 +53,8 @@ function validarFormulario(e){
         }
     }
 
-    if(er.test(email.value) && asunto.value !== "" && mensaje.value !== ""){
-        btnEnviar.disabled = false
+    if(er.test(email.value) && mensaje.value !== "" && asunto.value !== ""){
+        btnEnviar.disabled  = false
         btnEnviar.classList.remove("cursor-not-allow","opacity-50")
     }
 }
@@ -62,8 +62,7 @@ function validarFormulario(e){
 function mostrarError(mensaje){
     const mensajeError = document.createElement("p")
     mensajeError.textContent = mensaje
-    mensajeError.classList.add("border","border-red-500","bg-red-300","text-black","p-3","text-center","mt-5","error","font-bold","uppercase")
-
+    mensajeError.classList.add("border","border-red-500","background-red-100","text-red-500","p-3","mt-5","text-center","error")
     const errores = document.querySelectorAll(".error")
     if(errores.length === 0){
         formulario.appendChild(mensajeError)
@@ -74,21 +73,20 @@ function enviarEmail(e){
     e.preventDefault()
     const spinner = document.querySelector("#spinner")
     spinner.style.display = "flex"
-
-    setTimeout(() => {
+    setTimeout(()=>{
         spinner.style.display = "none"
         const parrafo = document.createElement("p")
-        parrafo.classList.add("border","border-green-500","bg-green-300","text-black","p-3","text-center","mt-5","error","font-bold","uppercase")
-        parrafo.textContent = "Mensaje Enviado Correctamente"
-        formulario.appendChild(parrafo)
-        setTimeout(() => {
+        parrafo.textContent = "El mensaje se envio correctamente"
+        parrafo.classList.add("text-center","my-10","p-2","bg-green-500","text-white","font-bold","uppercase")
+        formulario.insertBefore(parrafo,spinner)
+        setTimeout(()=>{
             parrafo.remove()
             resetearFormulario()
-        }, 3000);
-    }, 3000);
+        },5000)
+    },3000)
 }
 
 function resetearFormulario(){
     formulario.reset()
-    iniciarApp()
+    inicarApp()
 }
