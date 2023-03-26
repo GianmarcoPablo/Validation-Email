@@ -82,7 +82,7 @@ function enviarEmail(e){
         setTimeout(()=>{
             parrafo.remove()
             resetearFormulario()
-        },5000)
+        },3000)
     },3000)
 }
 
