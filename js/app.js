@@ -19,6 +19,7 @@ function cargarEventListeners(){
     })
 }
 
+
 function inicarApp(){
     btnEnviar.disabled = true
     btnEnviar.classList.add("cursor-not-allow","opacity-50")
@@ -35,26 +36,24 @@ function validarFormulario(e){
     }else{
         e.target.classList.remove("border","border-green-500")
         e.target.classList.add("border","border-red-500")
-        mostrarError("Todos los campos son obligatorios")
+        mostrarError("TODOS LOS CAMPOS SON OBLIGATORIOS")
     }
-
     if(e.target.type === "email"){
         if(er.test(e.target.value)){
             const error = document.querySelector(".error")
             if(error){
-                error.remove()
+            error.remove()
             }
             e.target.classList.remove("border","border-red-500")
             e.target.classList.add("border","border-green-500")
         }else{
             e.target.classList.remove("border","border-green-500")
-            e.target.classList.add("border","border-red-500")
-            mostrarError("Email no valido")
+        e.target.classList.add("border","border-red-500")
+        mostrarError("EMAIL NO VALIDO")
         }
     }
-
-    if(er.test(email.value) && mensaje.value !== "" && asunto.value !== ""){
-        btnEnviar.disabled  = false
+    if(er.test(email.value) && asunto.value !== "" && mensaje.value !== ""){
+        btnEnviar.disabled = false
         btnEnviar.classList.remove("cursor-not-allow","opacity-50")
     }
 }
@@ -62,11 +61,14 @@ function validarFormulario(e){
 function mostrarError(mensaje){
     const mensajeError = document.createElement("p")
     mensajeError.textContent = mensaje
-    mensajeError.classList.add("border","border-red-500","background-red-100","text-red-500","p-3","mt-5","text-center","error")
+    mensajeError.classList.add("border","border-red-500","bg-red-300","text-black","p-3","text-center","mt-5","error","font-bold","uppercase")
     const errores = document.querySelectorAll(".error")
     if(errores.length === 0){
         formulario.appendChild(mensajeError)
     }
+    setTimeout(() => {
+        mensajeError.remove()
+    }, 3000);
 }
 
 function enviarEmail(e){
@@ -76,9 +78,9 @@ function enviarEmail(e){
     setTimeout(()=>{
         spinner.style.display = "none"
         const parrafo = document.createElement("p")
-        parrafo.textContent = "El mensaje se envio correctamente"
-        parrafo.classList.add("text-center","my-10","p-2","bg-green-500","text-white","font-bold","uppercase")
-        formulario.insertBefore(parrafo,spinner)
+        parrafo.textContent = "MENSAJE ENVIADO CORRECTAMENTE"
+        parrafo.classList.add("border","border-green-500","bg-green-300","text-black","p-3","text-center","mt-5","error","font-bold","uppercase")
+        formulario.appendChild(parrafo)
         setTimeout(()=>{
             parrafo.remove()
             resetearFormulario()
@@ -88,5 +90,4 @@ function enviarEmail(e){
 
 function resetearFormulario(){
     formulario.reset()
-    inicarApp()
 }
