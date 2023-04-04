@@ -53,7 +53,7 @@ function validarFormulario(e){
         }
     }
 
-    if(er.test(email.value) && asunto.value !== "" && mensaje.value !== ""){
+    if(er.test(email.value) && asunto.value !== "" && mensaje !== ""){
         btnEnviar.disabled = false
         btnEnviar.classList.remove("cursor-not-allow","opacity-50")
     }
@@ -64,6 +64,7 @@ function mostrarError(mensaje){
     mensajeError.textContent = mensaje
     mensajeError.classList.add("border","border-red-500","bg-red-300","text-black","p-3","text-center","mt-5","error","font-bold","uppercase")
     const errores = document.querySelectorAll(".error")
+
     if(errores.length === 0){
         formulario.appendChild(mensajeError)
     }
@@ -73,19 +74,18 @@ function enviarEmail(e){
     e.preventDefault()
     const spinner = document.querySelector("#spinner")
     spinner.style.display = "flex"
-    
-    setTimeout(()=>{
+
+    setTimeout(() => {
         spinner.style.display = "none"
         const parrafo = document.createElement("p")
-        parrafo.textContent = "Mensaje Enviado Correctamente"
+        parrafo.textContent = "Mensaje Enviado Correctamenete"
         parrafo.classList.add("border","border-green-500","bg-green-300","text-black","p-3","text-center","mt-5","error","font-bold","uppercase")
         formulario.appendChild(parrafo)
-
         setTimeout(() => {
             parrafo.remove()
-            iniciarApp()
+            resetearFormulario()
         }, 3000);
-    },3000)
+    }, 3000);
 }
 
 function resetearFormulario(){
